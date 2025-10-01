@@ -5,9 +5,9 @@ OrderedList::OrderedList(){
   count = 0;
 
   sentinel = new ListNode;
-  if(sentinel == NULL) abort();
+  if(sentinel == NULL) abort(); //aloca a sentinela no construtor 
 
-  sentinel = head;
+  head = sentinel; 
 }
 
 OrderedList::~OrderedList(){
@@ -22,24 +22,24 @@ bool OrderedList::empty(){
 void OrderedList::insert(ListEntry x){
   ListPointer p = head;
   
-  sentinel->entry = x;
+  sentinel->entry = x; // garante que o laço vai parar no máximo na sentinela
 
-  while(p->entry < x){
+  while(p->entry < x){ // avança até achar onde inserir
     p = p->nextNode;
   }
 
   ListPointer newNode;
-  newNode = new ListNode;
+  newNode = new ListNode; //tenta alocar o nó que vamos adicionar
   if(newNode == NULL) abort();
 
-  if(p == sentinel){
+  if(p == sentinel){ //vamos acrescentar o valor no final da fila, transformando o sentinel no valor que adicionamos e o newNode vai ser o sentinela
     p->nextNode = newNode;
     sentinel = newNode;
   }
   else{
-    *newNode = *p;
+    *newNode = *p; //transfere tudo do p para o novo Nó
     p->entry = x;
-    p->nextNode = newNode;
+    p->nextNode = newNode; //faz a ligacao
   }
 
   count++;
@@ -51,22 +51,22 @@ void OrderedList::remove(ListEntry &x){
 
   sentinel->entry = x;
 
-  while(p->entry < x){
+  while(p->entry < x){ //duas variaveis, uma posicionada da posicao e a outra uma posicao atras
     q = p;
     p = p->nextNode;
   }
 
-  if(p == sentinel || p->entry != x) abort(); 
+  if(p == sentinel || p->entry != x) abort(); //verifica se encontrou o valor
 
-  if(p == head){
+  if(p == head){ //se for o primeiro valor, atualiza o head para o proximo
     head = head->nextNode;
   }
-  else{
+  else{ //caso contrario, atualiza o ponteiro de tras para conecatar no proximo
     q->nextNode = p->nextNode;
   }
 
   x = p->entry;
-  delete p;
+  delete p; //deleta o nó
   count--;
 }
 
