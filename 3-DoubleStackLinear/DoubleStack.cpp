@@ -42,15 +42,15 @@ void Stack::stack2_clear(){
 void Stack::stack1_push(StackEntry x){
   if(full()) abort();
 
-  top1++;
-  entry[top1];
+  top1++; //incrementa o top
+  entry[top1] = x; //apos incrementar adiciona o x no vetor entry, posicao top
 }
 
 void Stack::stack2_push(StackEntry x){
   if(full()) abort();
 
-  top2--;
-  entry[top2];
+  top2--; //decrementa, pois o stack2 comeca do final (vem de tras pra frente)
+  entry[top2] = x; //apos decrementar adiciona o x no vetor entry, posicao top
 }
 
 void Stack::stack1_pop(StackEntry &x){

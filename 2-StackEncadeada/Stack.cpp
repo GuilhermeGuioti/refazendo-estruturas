@@ -2,7 +2,7 @@
 #include <iostream>
 
 Stack::Stack(){
-  top == NULL;
+  top == NULL; //topo inicia em NULL, pois nao tem nenhum nó para ele apontar
   count == 0;
 }
 
@@ -24,12 +24,12 @@ int Stack::size(){
 
 void Stack::push(StackEntry x){
   StackPointer newNode;
-  newNode = new StackNode;
+  newNode = new StackNode; //ponteiro adicional aponta para o novo nó que estamos criando e adicionando
   if(newNode == NULL) abort();
 
-  newNode->entry = x;
-  newNode->nextNode = top;
-  top = newNode;
+  newNode->entry = x; //armazena o valor de x no campo entry do novo nó
+  newNode->nextNode = top; //nextnode do novo nó aponta para onde top apontava
+  top = newNode; //top agora vai ser o novo nó
 
   count++;
 }
@@ -37,12 +37,12 @@ void Stack::push(StackEntry x){
 void Stack::pop(StackEntry &x){
   if(empty()) abort();
   
-  x = top->entry;
+  x = top->entry; //armazena em x o valor que vai ser removido
 
-  StackPointer p;
-  p = top;
-  top = top->nextNode;
-  delete p;
+  StackPointer p; 
+  p = top; //ponteiro auxiliar aponta para mesmo lugar do top (fazemos isso para poder deletar o primeiro item sem remover o top)
+  top = top->nextNode; //topo vai ser o topnextnode agora
+  delete p; //deleta o item do topo
 
   count--;
 }

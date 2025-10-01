@@ -24,13 +24,13 @@ void Stack::clear(){
 void Stack::pop(StackEntry &x){
   if(empty()) abort();
 
-  x = entry[top];
-  top--;
+  x = entry[top]; //armazena em x, o valor que vai ser removido
+  top--; //decrementa o top (dessa maneira já removeove o item)
 }
 
 void Stack::push(StackEntry x){
   if(full()) abort();
 
-  top++;
-  entry[top] = x;
+  top++; //incrementa o top (antes de adicionar)
+  entry[top] = x; //adiciona em entry, na posicao top, o valor de x
 }

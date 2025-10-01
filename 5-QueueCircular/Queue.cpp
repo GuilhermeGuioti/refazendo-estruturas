@@ -32,16 +32,16 @@ int Queue::size(){
 void Queue::append(QueueEntry x){
   if(full()) abort();
 
-  tail = (tail % maxQueue) + 1;
-  entry[tail] = x;
+  tail = (tail % maxQueue) + 1; //expressao chave para adicionar, sempre usando o tail, pois adicionamos no final da fila
+  entry[tail] = x; //com o tail posicionado é so usar acessar o vetor entry na posicao tail e guardar x
   count ++;
 }
 
 void Queue::serve(QueueEntry &x){
   if(empty()) abort();
 
-  x = entry[head];
-  head = (head % maxQueue) + 1;
+  x = entry[head]; //retoma o valor que vai ser removido
+  head = (head % maxQueue) + 1; //expressao chave para remover, sempre usando o head, pois removemos no comeco da fila
   count --;
 }
 
